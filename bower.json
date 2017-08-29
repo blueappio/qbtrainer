@@ -1,0 +1,17 @@
+{
+  "name": "qbtrainer",
+  "version": "1.0.0",
+  "dependencies": {
+    "angular": "1.6.6",
+    "angular-material": "^1.1.1",
+    "angular-ui-router": "^0.3.1",
+    "angular-material-icons": "latest",
+    "blueapp.io": "latest",
+    "text-encoding": "^0.6.1",
+    "font-awesome-bower": "4.7.0",
+    "angular-nvd3": "^1.0.9"
+  },
+  "resolutions": {
+    "angular": "1.6.6"
+  }
+}

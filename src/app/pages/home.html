@@ -1,0 +1,41 @@
+<md-content>
+    <div style="position:absolute; top:10px; right: 0; padding-right: 0; width: 40px; cursor: pointer" ng-show="!quarterbackTrainer.connected" ng-click="onConnect()">
+        <i class="fa fa-bluetooth-b fa-2x" style="color: white" aria-hidden="true"></i>
+    </div>
+    <div flex="100" layout="row" layout-align="center center">
+        <div flex="30" flex-xs="100" flex-xs="100" flex-sm="40" flex-gt-md="35" flex-lg="30">
+            <div class="home-logo">
+                <img src="app/images/logo.png" width="85%" alt="" />
+                <div class="lo-txt">Quarterback Trainer
+                </div>
+            </div>
+            <md-list flex class="home-menu">
+                <md-list-item ng-click="goVelocity()">
+                    <div flex layout="row" layout-align="space-between center">
+                        <div>VELOCITY</div>
+                        <ng-md-icon icon="keyboard_arrow_right" style="margin-right: 0px;"></ng-md-icon>
+                    </div>
+                </md-list-item>
+                <md-list-item ng-click="goSpiral()">
+                    <div flex layout="row" layout-align="space-between center">
+                        <div>SPIRAL EFFICIENCY</div>
+                        <ng-md-icon icon="keyboard_arrow_right" style="margin-right: 0px;"></ng-md-icon>
+                    </div>
+                </md-list-item>
+                <md-list-item ng-click="goHT()">
+                    <div flex layout="row" layout-align="space-between center">
+                        <div>HANG TIME</div>
+                        <ng-md-icon icon="keyboard_arrow_right" style="margin-right: 0px;"></ng-md-icon>
+                    </div>
+                </md-list-item>
+                <md-list-item ng-click="goSpin()">
+                    <div flex layout="row" layout-align="space-between center">
+                        <div>FOOTBALL SPIN</div>
+                        <ng-md-icon icon="keyboard_arrow_right" style="margin-right: 0px;"></ng-md-icon>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </div>
+    </div>
+</md-content>
+

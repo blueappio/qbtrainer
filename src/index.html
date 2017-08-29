@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Origin Trial Token -->
+    <meta http-equiv="origin-trial"
+          content="AkK15PCT/JQzZOG2MuAyNPO4fR1U0rtIhLAogFay1cDTMLL2ulyBPKWiTiGdPa5FIzAHDC2yC+7mF/YBe+tI0g8AAABaeyJvcmlnaW4iOiAiaHR0cHM6Ly92ZW5zaS5naXRodWIuaW86NDQzIiwgImZlYXR1cmUiOiAiV2ViQmx1ZXRvb3RoIiwgImV4cGlyeSI6IDE0NzMyNjQ4NDV9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>QBTrainer</title>
+    <!-- build:css -->
+    <!-- endbuild -->
+    <!-- Loading core css-->
+    <!-- build:js -->
+    <!-- endbuild -->
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- run `gulp inject` to automatically populate bower styles dependencies -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp/serve,src}) styles/app.css -->
+    <!-- inject:css -->
+    <!-- css files will be automatically insert here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+</head>
+<!-- build:js(src) scripts/vendor.js -->
+<!-- bower:js -->
+<!-- run `gulp inject` to automatically populate bower script dependencies -->
+<!-- endbower -->
+<!-- endbuild -->
+<!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
+<!-- inject:js -->
+<!-- js files will be automatically insert here -->
+<!-- endinject -->
+<!-- inject:partials -->
+<!-- angular templates will be automatically converted in js and inserted here -->
+<!-- endinject -->
+<!-- endbuild -->
+<body ng-app="quarterbackTrainer" class="thing">
+
+<div ng-controller="mainController as main" md-theme-watch="true">
+    <div ng-show="toast" id="toaster"></div>
+    <md-content ui-view flex></md-content>
+
+</div>
+</body>
+
+</html>

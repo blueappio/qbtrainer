@@ -1,0 +1,204 @@
+<div class="inner-Bshadow" layout="column" layout-fill>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <md-button class="md-icon-button" aria-label="Back" ng-click="clearInterval()" style="padding-top: 10px;">
+                <ng-md-icon icon="arrow_back" style="fill:white" size="20"></ng-md-icon>
+            </md-button>
+            <h2 flex md-truncate>VELOCITY</h2>
+            <!--<div>-->
+            <!--<img src="./images/h-ball.png" height="36px" alt="" />-->
+            <!--</div>-->
+            <h2 ng-hide="quarterbackTrainer.batteryLevel == undefined" style="padding-top: 2px"> &nbsp;{{
+                quarterbackTrainer.batteryLevel }} %</h2>
+            <div id="battImg" layout="row" layout-align="left left" ng-hide="quarterbackTrainer.batteryLevel == undefined" style="margin-right: 0; padding-right: 0">
+                <div id="" class="" layout="row" layout-align="center center" style="margin-right: 0; padding-right: 0">
+                    <!--<ng-md-icon ng-if="sensorFusion.batteryLevel<=85 && sensorFusion.batteryLevel>35" icon="battery_50" style="fill: white" size="..."></ng-md-icon>-->
+
+                    <ng-md-icon ng-if="quarterbackTrainer.batteryLevel == undefined" icon="battery_unknown" style="fill: white" size="30"></ng-md-icon>
+                    <ng-md-icon ng-if="quarterbackTrainer.batteryLevel>95" icon="battery_full" style="fill: white" size="30"></ng-md-icon>
+                    <ng-md-icon ng-if="quarterbackTrainer.batteryLevel<=95 && quarterbackTrainer.batteryLevel>85" icon="battery_90" style="fill: white" size="30"></ng-md-icon>
+                    <ng-md-icon ng-if="quarterbackTrainer.batteryLevel<=85 && quarterbackTrainer.batteryLevel>75" icon="battery_80" style="fill: white" size="30"></ng-md-icon>
+                    <ng-md-icon ng-if="quarterbackTrainer.batteryLevel<=75 && quarterbackTrainer.batteryLevel>55" icon="battery_60" style="fill: white" size="30"></ng-md-icon>
+                    <ng-md-icon ng-if="quarterbackTrainer.batteryLevel<=55 && quarterbackTrainer.batteryLevel>35" icon="battery_50" style="fill: white" size="30"></ng-md-icon>
+                    <ng-md-icon ng-if="quarterbackTrainer.batteryLevel<=35 && quarterbackTrainer.batteryLevel>25" icon="battery_30" style="fill: white" size="30"></ng-md-icon>
+                    <ng-md-icon ng-if="quarterbackTrainer.batteryLevel<=25 && quarterbackTrainer.batteryLevel>15" icon="battery_20" style="fill: white" size="30"></ng-md-icon>
+                    <ng-md-icon ng-if="quarterbackTrainer.batteryLevel<=15" icon="battery_alert" style="fill: white" size="30"></ng-md-icon>
+
+                </div>
+
+            </div>
+        </div>
+    </md-toolbar>
+    <md-content>
+        <div flex="100" layout="row" layout-wrap>
+            <div layout="row" layout-align="center start" flex="50" flex-xs="100" class="p-15">
+                <div class="time-score" flex="100">
+                    <h3 style="color: white">Last Score</h3>
+
+                    <h1 ng-show="lastTime !=undefined">{{lastTime}}<span>MPH</span></h1>
+                    <h1 ng-show="lastTime ==undefined">&nbsp;</h1>
+                    <h3 style="color:white; margin-top: 40px">Waiting...</h3>
+                    <!--<div flex="100" layout="row" layout-wrap class="score-range">-->
+                    <!--<div flex="33" layout="column" class="rt-li" ng-show="scores[0] != undefined">-->
+                    <!--<div class="high">HIGH</div>-->
+                    <!--<div class="score-VL">{{scores[0].score}} <span>MPH</span>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div flex="33" layout="column" class="rt-li" ng-show="scores[1] != undefined">-->
+                    <!--<div class="avr">HIGH</div>-->
+                    <!--<div class="score-VL">{{scores[1].score}} <span>MPH</span>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div flex="33" layout="column" ng-show="scores[2] != undefined">-->
+                    <!--<div class="low">HIGH</div>-->
+                    <!--<div class="score-VL">{{scores[2].score}} <span>MPH</span>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                </div>
+            </div>
+            <div layout="column" flex="50" flex-xs="100" class="leaderBoard-list">
+                <div class="LBHD">LEADERBOARD
+                </div>
+                <div class="LBSBHD">
+                    <div flex="100" layout="row" layout-align="space-between center">
+                        <div class="no" flex="1"></div>
+                        <div flex>Name</div>
+                        <div flex="23" style="text-align: right">Score</div>
+                        <div flex="45" style="text-align: right">Played</div>
+                    </div>
+                </div>
+                <md-list flex >
+                    <md-list-item ng-repeat="s in scores |limitTo:5 track by $index">
+                        <div flex="100" layout="row" layout-align="space-between center">
+
+                            <div class="no" flex="1">{{$index+1}}</div>
+
+                            <div flex ng-if="$index+1 != currentScore">
+                                <div>{{s.name}}</div>
+                            </div>
+                            <div flex ng-if="$index+1 == currentScore">
+                                <div style="background-color: #0A3B7A; color: white">{{s.name}}</div>
+                            </div>
+                            <div flex="23" class="score-t" style="text-align: right; font-size: 13px">{{ s.score }} MPH</div>
+
+                            <div flex="45" class="score-t" style="text-align: right; font-size: 13px">{{  s.timestamp | date: 'MM-dd | hh:mm:ss a' }} </div>
+                        </div>
+                    </md-list-item>
+                </md-list>
+                <md-dialog-content style="margin-top: 50px; padding-bottom: 20px" layout-align="center center">
+                    <md-button class="md-raised md-primary" ng-click="clearScores()" ng-if="scores.length != 0">
+                        Clear scores
+                    </md-button>
+                </md-dialog-content>
+            </div>
+        </div>
+        <!--<div flex="100" layout="column" layout-align="center center" style="margin-top: 30px">-->
+        <!--<md-button ng-disabled="velocityStarted || !quarterbackTrainer.agmEnabled" class="md-raised md-primary htbutton" aria-label="Settings" ng-click="startVelocity()" ngModel="velocityStarted">-->
+        <!--Start VELOCITY-->
+        <!--</md-button>-->
+
+        <!--&lt;!&ndash;<md-button class="md-primary" aria-label="Settings" ng-click="addX();">&ndash;&gt;-->
+        <!--&lt;!&ndash;Add value&ndash;&gt;-->
+        <!--&lt;!&ndash;</md-button>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<md-button class="md-primary" aria-label="Settings" ng-click="removeX();">&ndash;&gt;-->
+        <!--&lt;!&ndash;Remove value&ndash;&gt;-->
+        <!--&lt;!&ndash;</md-button>&ndash;&gt;-->
+        <!--<br/>-->
+        <!--<br/>-->
+
+        <!--<div ng-if="lastTime != undefined" class="hangTimeMsg" style="font-size: 22px; margin-bottom: 30px">-->
+        <!--<div>-->
+        <!--LAST SCORE:-->
+        <!--<br/>-->
+        <!--{{lastTime}} m/s-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;{{lastTime}}&ndash;&gt;-->
+        <!--<div class="hangTimeMsg" style="text-align: center">-->
+        <!--{{score}}-->
+        <!--</div>-->
+
+        <!--<div ng-show="velocityStarted && !thrown" class="hangTimeMsg" style="font-size: 22px"> THROW THE BALL</div>-->
+        <!--<div ng-show="velocityStarted && thrown" class="hangTimeMsg" style="font-size: 22px"> THE BALL WAS THROWN</div>-->
+
+        <!--<br/>-->
+        <!--<div ng-show="velocityStarted" class="hangTimeMsg">-->
+        <!--<div>-->
+        <!--VELOCITY:-->
+        <!--</div>-->
+        <!--<div>-->
+        <!--{{time}}-->
+        <!--</div>-->
+        <!--<div>-->
+        <!--seconds-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;<div flex="100" layout="row" layout-align="center center" ng-show="finished && !htSaved && inTen" style="margin-top: 40px">&ndash;&gt;-->
+        <!--&lt;!&ndash;<md-button class="md-raised md-primary saveBtn" ng-click="saveScore()">&ndash;&gt;-->
+        <!--&lt;!&ndash;Save&ndash;&gt;-->
+        <!--&lt;!&ndash;</md-button>&ndash;&gt;-->
+        <!--&lt;!&ndash;<md-button class="md-raised md-primary cancelBtn" ng-click="clearHTData()">&ndash;&gt;-->
+        <!--&lt;!&ndash;Cancel&ndash;&gt;-->
+        <!--&lt;!&ndash;</md-button>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--<div class="leaderboard" flex="100" layout="column" layout-align="center center" >-->
+        <!--<div style="margin-bottom: 20px; width: 100%; text-align: center; height: 30px; padding-top: 5px; background-color: #2196F3; color: white">LEADERBOARD</div>-->
+        <!--<table style="width: 100%">-->
+        <!--<thead>-->
+        <!--<tr>-->
+        <!--<th WIDTH="10%" style="padding-bottom: 10px"></th>-->
+        <!--<th WIDTH="25%" style="padding-bottom: 10px">Name</th>-->
+        <!--<th WIDTH="20%" style="padding-bottom: 10px">Score</th>-->
+        <!--<th WIDTH="50%" style="padding-bottom: 10px">Time</th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+
+        <!--<tr ng-repeat="s in scores |limitTo:10 track by $index">-->
+        <!--<td ng-if="$index+1 != currentScore">-->
+        <!--{{$index+1}}-->
+        <!--</td>-->
+        <!--<td ng-if="$index+1 == currentScore" style="">-->
+        <!--{{$index+1}}-->
+        <!--</td>-->
+        <!--<td ng-if="$index+1 != currentScore">-->
+        <!--<input class="myInput" ng-change="saveChanges()" name="userName" ng-model=s.name>-->
+        <!--</td>-->
+        <!--<td ng-if="$index+1 == currentScore" style="">-->
+        <!--<input class="myInput" ng-change="saveChanges()" name="userName" ng-model=s.name style="background-color: #2196F3; color: white">-->
+        <!--</td>-->
+        <!--<td ng-if="$index+1 != currentScore">{{ s.score }} m/s</td>-->
+        <!--<td ng-if="$index+1 == currentScore" style="">{{ s.score }} m/s</td>-->
+
+        <!--<td ng-if="$index+1 != currentScore" style="font-size: 14px">{{ s.timestamp | date: 'MM-dd | hh:mm:ss a'}}</td>-->
+        <!--<td ng-if="$index+1 == currentScore" style="font-size: 14px">{{ s.timestamp | date: 'MM-dd | hh:mm:ss a'}}</td>-->
+        <!--</tr>-->
+
+        <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+        <!--&lt;!&ndash;<td>&ndash;&gt;-->
+        <!--&lt;!&ndash;1&ndash;&gt;-->
+        <!--&lt;!&ndash;</td>&ndash;&gt;-->
+        <!--&lt;!&ndash;<td>&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash;<md-input-container flex="100" style="height: 35px; margin-bottom: 20px; border-bottom:1px solid #757575;">&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<input class="myInput" name="userName" ng-model="name1">&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash;</md-input-container>&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;</td>&ndash;&gt;-->
+        <!--&lt;!&ndash;<td>28</td>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+        <!--</tbody>-->
+        <!--</table>-->
+        <!--<md-dialog-content style="margin-top: 50px; padding-bottom: 20px">-->
+        <!--<md-button class="md-raised md-primary clearScores" ng-click="clearScores()" ng-if="scores.length != 0">-->
+        <!--Clear scores-->
+        <!--</md-button>-->
+        <!--</md-dialog-content>-->
+        <!--</div>-->
+        <!--</div>-->
+    </md-content>
+
+</div>
+
